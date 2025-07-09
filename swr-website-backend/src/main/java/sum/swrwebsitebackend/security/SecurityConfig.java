@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -61,23 +62,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless APIs, but be aware of the implications.
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        // Allow public access to view events and images
+                        // Your rules are perfect, no changes needed here
                         .requestMatchers(HttpMethod.GET, "/api/events", "/api/events/**").permitAll()
-                        // Secure the admin endpoints (POST, PUT, DELETE)
                         .requestMatchers(HttpMethod.POST, "/api/events").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/events/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ADMIN")
-                        // All other requests must be authenticated
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
-                        .successHandler(authenticationSuccessHandler()) // Custom handler after successful OAuth2 login
+                        .successHandler(authenticationSuccessHandler())
                 )
-                .formLogin(form -> form // Configure standard form-based login
-                        .defaultSuccessUrl("/api/events", true) // Redirect after successful form login
-                );
+                .formLogin(form -> form
+                        .defaultSuccessUrl("/api/events", true)
+                )
+                .httpBasic(Customizer.withDefaults()); // <-- ADD THIS LINE
 
         return http.build();
     }
