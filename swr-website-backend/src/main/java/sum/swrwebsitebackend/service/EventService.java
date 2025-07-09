@@ -44,65 +44,40 @@ public class EventService {
         }
     }
 
-    /**
-     * Stores an uploaded file.
-     * @param file The MultipartFile to store.
-     * @return The unique filename under which the file is stored.
-     */
-    private String storeFile(MultipartFile file) {
-        if (file.isEmpty()) {
-            throw new RuntimeException("Failed to store empty file.");
-        }
-        // Generate a unique filename to prevent collisions
-        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        try (InputStream inputStream = file.getInputStream()) {
-            Files.copy(inputStream, this.uploadPath.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
-            return filename;
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to store file " + filename, e);
-        }
-    }
 
     /**
      * Creates a new event and stores its cover image.
      * @param event The event data to save.
-     * @param imageFile The uploaded cover image.
      * @return The saved Event entity.
      */
-    public Event createEvent(Event event, MultipartFile imageFile) {
-        if (imageFile != null && !imageFile.isEmpty()) {
-            String filename = storeFile(imageFile);
-            // We store a relative path that the controller will use to serve the image.
-            event.setCoverImageUrl("/api/events/images/" + filename);
-        }
-        event.setCurrentRegistrations(0); // Ensure new events start with 0 registrations.
+    public Event createEvent(Event event) {
+        // The event object now arrives with the coverImageUrl already set from the client.
+        // We no longer need to process a file upload.
+
+        // Set any server-side default values for a new event.
+        event.setCurrentRegistrations(0);
+
         return eventRepository.save(event);
     }
-
     /**
-     * Updates an existing event and optionally its cover image.
+     * Updates an existing event.
      * @param id The ID of the event to update.
-     * @param eventDetails The new event data.
-     * @param imageFile The new optional cover image.
+     * @param eventDetails An Event object containing the new data.
      * @return The updated Event entity.
      */
-    public Event updateEvent(Long id, Event eventDetails, MultipartFile imageFile) {
-        Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Event not found with id: " + id));
-
-        event.setTitle(eventDetails.getTitle());
-        event.setDescription(eventDetails.getDescription());
-        event.setLocation(eventDetails.getLocation());
-        event.setEventDateTime(eventDetails.getEventDateTime());
-        // Note: currentRegistrations is not updated here. That would likely be a separate action.
-
-        if (imageFile != null && !imageFile.isEmpty()) {
-            // Optional: You could add logic here to delete the old image file.
-            String filename = storeFile(imageFile);
-            event.setCoverImageUrl("/api/events/images/" + filename);
+    public Event updateEvent(Long id, Event eventDetails) {
+        // First, check if the event we're trying to update actually exists.
+        if (!eventRepository.existsById(id)) {
+            throw new RuntimeException("Event not found with id: " + id);
         }
 
-        return eventRepository.save(event);
+        // Set the ID from the path variable onto the event object from the request body.
+        // This ensures we are updating the correct record.
+        eventDetails.setId(id);
+
+        // The eventDetails object contains all the new data, including the updated coverImageUrl.
+        // JPA's save method will perform an UPDATE because the ID is set.
+        return eventRepository.save(eventDetails);
     }
 
     public List<Event> getAllEvents() {
