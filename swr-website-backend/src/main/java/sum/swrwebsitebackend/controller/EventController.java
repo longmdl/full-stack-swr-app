@@ -1,5 +1,6 @@
 package sum.swrwebsitebackend.controller;
 
+import lombok.Builder;
 import sum.swrwebsitebackend.entity.Event;
 import sum.swrwebsitebackend.service.EventService;
 import lombok.RequiredArgsConstructor;
