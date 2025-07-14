@@ -2,25 +2,47 @@ import React from 'react';
 import Registration from './Registration';
 
 function EventCard({ event, isNewest }) {
+  // Return null or a placeholder if the event object itself is missing
+  if (!event) {
+    return null;
+  }
+
+  // Safely format the date, providing a fallback if it's not available
+  const eventDate = event.eventDateTime
+    ? new Date(event.eventDateTime).toLocaleString()
+    : 'Date TBD';
+
   return (
     <div className="bg-background dark:bg-background rounded-lg shadow p-6 mb-8 flex flex-col md:flex-row gap-6 border border-gray-800">
       <img
-        src={event.coverImageUrl}
-        alt={event.title}
+        // Use a fallback image if the cover image URL is missing
+        src={event.coverImageUrl ?? 'https://via.placeholder.com/300'}
+        alt={event.title ?? 'Event'} // Use fallback alt text
         className="w-full md:w-1/3 h-56 object-cover rounded-lg shadow-lg mb-4 md:mb-0 border-2 border-primary"
       />
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-primary mb-2">{event.title}</h2>
-          <p className="text-gray-300 mb-2">{event.description}</p>
+          {/* Use optional chaining and fallbacks for text content */}
+          <h2 className="text-2xl font-bold text-primary mb-2">
+            {event.title ?? 'Untitled Event'}
+          </h2>
+          <p className="text-gray-300 mb-2">
+            {event.description ?? 'No description available.'}
+          </p>
           <div className="flex flex-wrap gap-2 mb-2">
-            <span className="inline-block bg-primary text-black text-xs px-2 py-1 rounded-full font-semibold">{event.location}</span>
+            {/* Conditionally render location only if it exists */}
+            {event.location && (
+              <span className="inline-block bg-primary text-black text-xs px-2 py-1 rounded-full font-semibold">
+                {event.location}
+              </span>
+            )}
             <span className="inline-block bg-gray-800 text-primary text-xs px-2 py-1 rounded-full font-semibold">
-              {new Date(event.eventDateTime).toLocaleString()}
+              {eventDate}
             </span>
           </div>
         </div>
         <div className="flex gap-4 mt-4">
+          {/* These are already safe due to the && operator */}
           {event.carLink && (
             <a
               href={event.carLink}
@@ -48,4 +70,4 @@ function EventCard({ event, isNewest }) {
   );
 }
 
-export default EventCard; 
+export default EventCard;
