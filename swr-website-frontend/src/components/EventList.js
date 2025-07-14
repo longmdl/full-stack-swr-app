@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EventCard from './EventCard';
-import EventCover from './EventCover';
-import EventDetails from './EventDetails';
 
 // The URL of your Spring Boot backend
 const API_URL = 'http://localhost:8080/api/events';

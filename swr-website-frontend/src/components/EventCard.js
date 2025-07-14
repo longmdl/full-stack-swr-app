@@ -13,12 +13,14 @@ function EventCard({ event, isNewest }) {
     : 'Date TBD';
 
   return (
-    <div className="bg-background dark:bg-background rounded-lg shadow p-6 mb-8 flex flex-col md:flex-row gap-6 border border-gray-800">
+    // Applied the primary border to this main container div
+    <div className="bg-background dark:bg-background rounded-lg shadow p-6 mb-8 flex flex-col gap-6 border-2 border-[#3f3e0f]">
       <img
         // Use a fallback image if the cover image URL is missing
         src={event.coverImageUrl ?? 'https://via.placeholder.com/300'}
         alt={event.title ?? 'Event'} // Use fallback alt text
-        className="w-full md:w-1/3 h-56 object-cover rounded-lg shadow-lg mb-4 md:mb-0 border-2 border-primary"
+        // Removed border classes from the image tag
+        className="w-full aspect-video object-cover rounded-lg shadow-lg"
       />
       <div className="flex-1 flex flex-col justify-between">
         <div>
@@ -32,16 +34,16 @@ function EventCard({ event, isNewest }) {
           <div className="flex flex-wrap gap-2 mb-2">
             {/* Conditionally render location only if it exists */}
             {event.location && (
-              <span className="inline-block bg-primary text-black text-xs px-2 py-1 rounded-full font-semibold">
-                {event.location}
-              </span>
+             <span className="location-badge inline-block bg-primary text-black text-xs px-2 py-1 rounded-full font-semibold">
+             {event.location}
+           </span>
             )}
             <span className="inline-block bg-gray-800 text-primary text-xs px-2 py-1 rounded-full font-semibold">
               {eventDate}
             </span>
           </div>
         </div>
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-1">
           {/* These are already safe due to the && operator */}
           {event.carLink && (
             <a
@@ -64,7 +66,7 @@ function EventCard({ event, isNewest }) {
             </a>
           )}
         </div>
-        {isNewest && <Registration currentRegistrations={event.currentRegistrations} />}
+        { <Registration currentRegistrations={event.currentRegistrations} />}
       </div>
     </div>
   );
