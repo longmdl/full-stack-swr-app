@@ -20,6 +20,28 @@ function EventCard({ event, isNewest }) {
             </span>
           </div>
         </div>
+        <div className="flex gap-4 mt-4">
+          {event.carLink && (
+            <a
+              href={event.carLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary hover:bg-primary-dark text-black font-semibold py-2 px-6 rounded-full shadow transition mb-2"
+            >
+              Car Link
+            </a>
+          )}
+          {event.trackLink && (
+            <a
+              href={event.trackLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary hover:bg-primary-dark text-black font-semibold py-2 px-6 rounded-full shadow transition mb-2"
+            >
+              Track Link
+            </a>
+          )}
+        </div>
         {isNewest && <Registration currentRegistrations={event.currentRegistrations} />}
       </div>
     </div>

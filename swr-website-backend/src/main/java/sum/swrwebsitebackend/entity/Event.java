@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder
@@ -24,6 +23,11 @@ public class Event {
     private String title;
 
     private String description;
+
+    private String trackLink;
+
+    private String carLink;
+
 
     private String coverImageUrl; // Path to the event cover image
 
