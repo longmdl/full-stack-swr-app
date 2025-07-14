@@ -20,76 +20,40 @@ import java.util.Optional;
 /**
  * Service layer for managing events and their associated cover images.
  */
-@Service
-@RequiredArgsConstructor
-public class EventService {
-
-    private final EventRepository eventRepository;
-
-    @Value("${file.upload-dir:./uploads}") // Injects upload directory path from properties
-    private String uploadDir;
-
-    private Path uploadPath;
+public interface EventService {
 
     /**
-     * Initializes the service by creating the upload directory if it doesn't exist.
+     * Create a new event.
+     * @param event the event data
+     * @return the saved Event entity
      */
-    @PostConstruct
-    public void init() {
-        this.uploadPath = Paths.get(uploadDir);
-        try {
-            Files.createDirectories(uploadPath);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not create upload directory!", e);
-        }
-    }
-
+    Event createEvent(Event event);
 
     /**
-     * Creates a new event and stores its cover image.
-     * @param event The event data to save.
-     * @return The saved Event entity.
+     * Update an existing event.
+     * @param id the ID of the event to update
+     * @param eventDetails the new event data
+     * @return the updated Event entity
      */
-    public Event createEvent(Event event) {
-        // The event object now arrives with the coverImageUrl already set from the client.
-        // We no longer need to process a file upload.
+    Event updateEvent(Long id, Event eventDetails);
 
-        // Set any server-side default values for a new event.
-        event.setCurrentRegistrations(0);
-
-        return eventRepository.save(event);
-    }
     /**
-     * Updates an existing event.
-     * @param id The ID of the event to update.
-     * @param eventDetails An Event object containing the new data.
-     * @return The updated Event entity.
+     * Retrieve all events, sorted by date/time descending.
+     * @return list of events
      */
-    public Event updateEvent(Long id, Event eventDetails) {
-        // First, check if the event we're trying to update actually exists.
-        if (!eventRepository.existsById(id)) {
-            throw new RuntimeException("Event not found with id: " + id);
-        }
+    List<Event> getAllEvents();
 
-        // Set the ID from the path variable onto the event object from the request body.
-        // This ensures we are updating the correct record.
-        eventDetails.setId(id);
+    /**
+     * Retrieve a single event by its ID.
+     * @param id the event ID
+     * @return optional containing the Event if found
+     */
+    Optional<Event> getEventById(Long id);
 
-        // The eventDetails object contains all the new data, including the updated coverImageUrl.
-        // JPA's save method will perform an UPDATE because the ID is set.
-        return eventRepository.save(eventDetails);
-    }
-
-    public List<Event> getAllEvents() {
-        return eventRepository.findAllByOrderByEventDateTimeDesc();
-    }
-
-    public Optional<Event> getEventById(Long id) {
-        return eventRepository.findById(id);
-    }
-
-    public void deleteEvent(Long id) {
-        // Optional: Add logic to delete the associated image file from storage.
-        eventRepository.deleteById(id);
-    }
+    /**
+     * Delete an event by its ID.
+     * @param id the event ID
+     */
+    void deleteEvent(Long id);
 }
+
