@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const BG_PLACEHOLDER = 'https://media.discordapp.net/attachments/764106989474283561/1380816123645136966/Screenshot_vrc_pt_2023_pageau_98_sx_lemans_7-5-125-14-38-3.jpg?ex=6876b0fa&is=68755f7a&hm=ce3517f7ea03b00e7909aba5edf296fb0eedb39c84e87d86a889a9feb1ff405a&=&format=webp&width=1932&height=1086';
+const BG_PLACEHOLDER = 'https://media.discordapp.net/attachments/764106989474283561/1375669866111045713/Screenshot_vrc_pt_2024_cadenza_spa_24-4-125-8-34-33.jpg?ex=687715e6&is=6875c466&hm=3e81b471e43798cb9015444fd166612821f046d9e4a3139b856f865a34c7c7bc&=&format=webp&width=1990&height=1088';
 
 function LeagueHeader() {
     return (
