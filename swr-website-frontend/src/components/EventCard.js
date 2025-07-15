@@ -25,7 +25,7 @@ function EventCard({ event, isNewest }) {
       <div className="flex-1 flex flex-col justify-between">
         <div>
           {/* Use optional chaining and fallbacks for text content */}
-          <h2 className="text-2xl font-bold text-primary mb-2">
+          <h2 className="center text-2xl font-bold text-primary mb-2">
             {event.title ?? 'Untitled Event'}
           </h2>
           <p className="text-gray-300 mb-2">

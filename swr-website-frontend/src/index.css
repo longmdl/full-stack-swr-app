@@ -1,8 +1,7 @@
-/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap'); /* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 .dark body {
   /* FIX: Reordered the gradient for a smooth transition from dark to yellow */
@@ -10,6 +9,13 @@
   background-size: 100% 100%;
   animation: gradientMove 15s ease-in-out infinite;
   color: #e5e7eb;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 @keyframes gradientMove {
@@ -91,7 +97,7 @@ img[alt="Event Cover"] {
 
 
 .logo-font {
-  font-family: 'Oswald', sans-serif; /* Apply the Oswald font */
+  font-family: 'Oswald', 'Inter', sans-serif; /* Apply the Oswald font */
   font-weight: 700;                  /* This is for 'font-bold' */
   font-size: 1.125rem;               /* This is for 'text-lg' */
   /* The color will still be handled by the 'text-primary' Tailwind class */
