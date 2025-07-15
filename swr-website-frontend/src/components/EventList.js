@@ -29,7 +29,7 @@ function EventList() {
   return (
     <div className="bg-background dark:bg-background p-4 rounded-lg">
       {events.map((event, idx) => (
-        <EventCard key={event.id} event={event} isNewest={idx === 0} />
+        <EventCard key={event.id} event={event} isNewest={idx < 2} />
       ))}
     </div>
   );

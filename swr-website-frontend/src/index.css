@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap'); /* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,8 +99,8 @@ img[alt="Event Cover"] {
 
 .logo-font {
   font-family: 'Oswald', 'Inter', sans-serif; /* Apply the Oswald font */
-  font-weight: 700;                  /* This is for 'font-bold' */
-  font-size: 1.125rem;               /* This is for 'text-lg' */
+  font-weight: 800;                  /* This is for 'font-bold' */
+  font-size: 1.5rem;               /* This is for 'text-lg' */
   /* The color will still be handled by the 'text-primary' Tailwind class */
 }
 

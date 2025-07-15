@@ -66,7 +66,7 @@ function EventCard({ event, isNewest }) {
             </a>
           )}
         </div>
-        { <Registration currentRegistrations={event.currentRegistrations} />}
+        {isNewest && <Registration currentRegistrations={event.currentRegistrations} />}
       </div>
     </div>
   );

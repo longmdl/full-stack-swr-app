@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-4 py-3 border-b border-[#3f3e0f] bg-background text-primary-dark dark:bg-background dark:text-primary-dark mb-6 shadow-sm">
+    <nav className="flex items-center justify-between px-4 py-3 border-b border-[#3f3e0f] bg-background text-primary-dark dark:bg-background dark:text-primary-dark shadow-sm">
       <div className="flex items-center gap-2">
         <img src="/sum_logo_1.png" alt="SUM Logo" className="w-12 h-10 object-contain" />
         <span className="logo-font text-primary">Saigon United Motorsports</span>
