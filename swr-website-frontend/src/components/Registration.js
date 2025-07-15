@@ -12,7 +12,7 @@ function Registration({ currentRegistrations }) {
   Register Now
 </a>
       <div className="text-primary text-sm mt-1">
-        Current Registrations: <span className="font-bold">{currentRegistrations ?? 0}</span>
+        Join our Discord channel to register! <span className="font-bold"></span>
       </div>
     </div>
   );
