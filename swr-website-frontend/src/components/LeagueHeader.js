@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const BG_PLACEHOLDER = 'https://media.discordapp.net/attachments/764106989474283561/1375669866111045713/Screenshot_vrc_pt_2024_cadenza_spa_24-4-125-8-34-33.jpg?ex=687715e6&is=6875c466&hm=3e81b471e43798cb9015444fd166612821f046d9e4a3139b856f865a34c7c7bc&=&format=webp&width=1990&height=1088';
+const BG_PLACEHOLDER = 'https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/470922916_10212490803142779_6955096298772908957_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Twar5h6QidwQ7kNvwG99BCV&_nc_oc=Adn1McdavewIie6vJZSXYnIwyyiCdqht5XVYF1_Nml8oIrmNuHQ9d34FLVgLXkj-p4s&_nc_zt=23&_nc_ht=scontent.fsgn2-7.fna&_nc_gid=YdE5uYQZ2ytjUkXBo8W3Ug&oh=00_AfQiarV3YAFC5becPl6WAirPttLdjQ86FWf_eRxZEW7Ncw&oe=687E3BB1';
 
 function LeagueHeader() {
     return (

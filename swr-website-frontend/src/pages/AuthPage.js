@@ -24,12 +24,6 @@ function AuthPage() {
       <main className="flex flex-col items-center justify-center min-h-[60vh] px-4">
         <div className="bg-gray-900 rounded-lg shadow p-8 w-full max-w-md border border-gray-800">
           <h2 className="text-2xl font-bold mb-6 text-center text-primary">Admin Login</h2>
-          <a
-            href="/oauth2/authorization/google"
-            className="block w-full text-center bg-primary hover:bg-primary-dark text-black font-semibold py-2 px-4 rounded mb-4 transition shadow"
-          >
-            Login with Google
-          </a>
           <div className="text-center text-gray-400 mb-4">or</div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
