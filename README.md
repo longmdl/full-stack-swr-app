@@ -22,16 +22,3 @@ Backend: Spring Boot, Java 17, Maven
 Database: MySQL 
 
 Authentication: JWT 
-
-Project Structure
-
-full-stack-swr-app/
-├── swr-website-backend/    # Spring Boot backend
-│   ├── src/
-│   ├── pom.xml
-│   └── README.md
-├── swr-website-frontend/   # React frontend
-│   ├── public/
-│   ├── src/
-│   ├── package.json
-│   └── README.md
