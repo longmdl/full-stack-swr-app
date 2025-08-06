@@ -19,26 +19,16 @@ function CreateEventForm() {
     setSuccess(null);
     setError(null);
     try {
-      const formData = new FormData();
-      formData.append('title', title);
-      formData.append('description', description);
-      formData.append('location', location);
-      formData.append('eventDateTime', eventDateTime);
-      formData.append('coverImageUrl', coverImageUrl); // Appending URL string
-      formData.append('carLink', carLink);             // Appending carLink
-      formData.append('trackLink', trackLink);         // Appending trackLink
-
-      await createEvent(formData);
+      await createEvent({
+        title,
+        description,
+        location,
+        eventDateTime,
+        coverImageUrl,
+        carLink,
+        trackLink
+      });
       setSuccess('Event created successfully!');
-
-      // Reset all form fields
-      setTitle('');
-      setDescription('');
-      setLocation('');
-      setEventDateTime('');
-      setCoverImageUrl('');
-      setCarLink('');
-      setTrackLink('');
     } catch (err) {
       setError('Failed to create event');
     } finally {
