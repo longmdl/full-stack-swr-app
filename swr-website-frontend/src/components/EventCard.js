@@ -14,7 +14,7 @@ function EventCard({ event, isNewest }) {
 
   return (
     // Applied the primary border to this main container div
-    <div className="bg-background dark:bg-background rounded-lg shadow p-6 mb-8 flex flex-col gap-6 border-2 border-[#3f3e0f]">
+    <div className="bg-background dark:bg-background rounded-lg shadow p-6 mb-8 flex flex-col gap-6 border-2 border-[#3f3e0f] ">
       <img
         // Use a fallback image if the cover image URL is missing
         src={event.coverImageUrl ?? 'https://via.placeholder.com/300'}
